@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isaac Bezerra - Links Profissionais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        body {
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ONDAS COM A PALETA DO CARD (BRANCO E AZUL LINKEDIN) */
+        .sea {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* O brilho (glow) agora é baseado no azul do LinkedIn */
+            filter: drop-shadow(0 -5px 8px #0077b5) blur(3px) contrast(5);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .wave_graphic {
+            width: 1vw;
+            min-width: 10px;
+            height: 40px;
+            /* Cores idênticas aos links: Branco e Azul LinkedIn */
+            background: linear-gradient(180deg, #ffffff 0%, #0077b5 100%);
+        }
+
+        /* ANIMAÇÕES DO SEU CÓDIGO ORIGINAL */
+        .wave_fade { animation: fade 1400ms ease-in-out infinite alternate; }
+        .wave_skew { animation: skew 2000ms ease-in-out infinite alternate; }
+        .wave_translate { animation: translate 2000ms ease-in-out infinite alternate; }
+
+        @keyframes fade { 0%, 5% { opacity: 0.1; } 100% { opacity: 0.8; } }
+        @keyframes skew { 0% { transform: skewY(-17.5deg); } 100% { transform: skewY(17.5deg); } }
+        @keyframes translate { 0% { transform: translateY(130px); } 100% { transform: translateY(-130px); } }
+
+        /* CARD PROFISSIONAL */
+        .card {
+            background-color: #ffffff;
+            width: 350px;
+            padding: 40px 25px;
+            border-radius: 20px;
+            border: 4px solid #000;
+            /* Sombra usando o azul dos links */
+            box-shadow: 12px 12px 0px #0077b5;
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid #000;
+            margin-bottom: 15px;
+            object-fit: cover;
+            background: #fff;
+        }
+
+        h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 28px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .bio { font-size: 14px; color: #555; margin-bottom: 25px; font-weight: bold; }
+
+        .link-button {
+            display: block;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 14px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            transition: 0.2s;
+        }
+
+        .link-button:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 7px 7px 0px #0077b5; /* Hover combina com as ondas */
+            background-color: #f0f7ff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sea" id="waveContainer"></div>
+
+    <div class="card">
+        <img src="https://github.com/bzisaac2008.png" alt="Isaac Bezerra" class="profile-pic">
+        <h1>ISAAC BEZERRA</h1>
+        <p class="bio">DESENVOLVEDOR FULLSTACK</p>
+
+        <a href="https://www.linkedin.com/in/isaac-bezerra-1528233ab" class="link-button" target="_blank">LinkedIn</a>
+        <a href="https://github.com/bzisaac2008" class="link-button" target="_blank">GitHub</a>
+        <a href="https://wa.me/5585982151171" class="link-button" target="_blank">WhatsApp</a>
+        <a href="mailto:bezerraisaac2008@gmail.com" class="link-button">E-mail</a>
+    </div>
+
+    <script>
+        const container = document.getElementById('waveContainer');
+        const waveCount = 100;
+        const waveDuration = 2000;
+
+        for (let i = 1; i <= waveCount; i++) {
+            const wave = document.createElement('div');
+            wave.className = 'wave';
+            const delay = (i * -waveDuration) / waveCount;
+            const translateDelay = delay - (waveDuration / 2);
+
+            wave.innerHTML = `
+                <div class="wave_fade" style="animation-delay: ${delay}ms">
+                    <div class="wave_skew" style="animation-delay: ${delay}ms">
+                        <div class="wave_translate" style="animation-delay: ${translateDelay}ms">
+                            <div class="wave_graphic"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(wave);
+        }
+    </script>
+</body>
+</html>
